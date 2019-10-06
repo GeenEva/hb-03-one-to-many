@@ -1,5 +1,8 @@
 package com.luv2code.hibernate.demo.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -32,6 +36,14 @@ public class Instructor {
 	@JoinColumn(name="instructor_detail_id")
 	private InstructorDetail instructorDetail;
 	
+	@OneToMany(mappedBy="instructor", //referring to property in Course class
+				cascade= {CascadeType.DETACH, CascadeType.MERGE, 
+						CascadeType.PERSIST, CascadeType.REFRESH })
+	private List<Course> courses;
+	
+	
+	//CONSTRUCTORS
+	
 	public Instructor() {}
 
 	public Instructor(String firstName, String lastName, String email) {
@@ -39,7 +51,10 @@ public class Instructor {
 		this.lastName = lastName;
 		this.email = email;
 	}
-
+	
+	
+	//GETTERS AND SETTERS
+	
 	public int getId() {
 		return id;
 	}
@@ -79,6 +94,17 @@ public class Instructor {
 	public void setInstructorDetail(InstructorDetail instructorDetail) {
 		this.instructorDetail = instructorDetail;
 	}
+	
+	public List<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
+	
+	
+	// OTHER METHODS
 
 	@Override
 	public String toString() {
@@ -87,6 +113,16 @@ public class Instructor {
 	}
 	
 
+	public void add(Course tempCourse){
+		
+		if (courses == null) {
+			courses = new ArrayList<Course>();
+		}
+		
+		courses.add(tempCourse);
+		tempCourse.setInstructor(this);
+		
+	}
 	
 	
 }
