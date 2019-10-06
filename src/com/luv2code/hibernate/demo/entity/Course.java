@@ -14,6 +14,8 @@ import javax.persistence.Table;
 @Table(name="course")
 public class Course {
 
+//PROPERTY FIELDS
+	
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -24,11 +26,13 @@ public class Course {
 
 	@ManyToOne(cascade= {CascadeType.DETACH, CascadeType.MERGE, 
 							CascadeType.PERSIST, CascadeType.REFRESH })
-	@JoinColumn(name="constructor_id") 	
+	@JoinColumn(name="instructor_id") 	
 	private Instructor instructor;
 	
 	
+//CONSTRUCTORS
 
+	
 	public Course() {}
 
 	public Course(String title) {
