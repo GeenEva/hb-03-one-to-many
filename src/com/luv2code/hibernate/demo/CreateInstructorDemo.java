@@ -23,13 +23,8 @@ public class CreateInstructorDemo {
 
 		try {
 
-			Instructor tempInstructor = new Instructor("Tobo", "Snuikr", "kokki@dori");
-			tempInstructor.setInstructorDetail(new InstructorDetail("TubeTube", "gettingFollowers"));
-			
-			Course course = new Course("In de Maneschijn");
-			Course course2 = new Course("In de Bomen");
-			tempInstructor.add(course);
-			tempInstructor.add(course2);
+			Instructor tempInstructor = new Instructor("Huhhh", "Flaijwf", "maki@dori");
+			tempInstructor.setInstructorDetail(new InstructorDetail("FLoopFloop", "follw Tha Monney"));
 			
 			session.beginTransaction();
 			
